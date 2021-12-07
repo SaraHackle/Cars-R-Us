@@ -14,3 +14,16 @@ body {
     border-radius: 0.5rem;
     box-shadow: 0.25rem 0.25rem 0.5rem rgb(143, 143, 143);
 }
+
+.button{
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 100px;
+}
+
+.customOrders{
+    display: flex;
+    justify-content: center;
+
+}
