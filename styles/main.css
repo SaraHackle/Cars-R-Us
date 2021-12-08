@@ -1,18 +1,22 @@
 body {
     font-family: fantasy;
     font-size: medium;
-}
-.choices{
     display: flex;
+}
+
+.choices {
+    display: flex;
+    flex-wrap: wrap;
     
 }
 .options {
     flex-basis: 24%;
-    margin: 0 2rem;
+    margin: 2vh;
     border: 1px dashed;
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0.25rem 0.25rem 0.5rem rgb(143, 143, 143);
+    background-color: khaki;
 }
 
 .button{
@@ -27,3 +31,10 @@ margin: 100px;
     justify-content: center;
 
 }
+
+.orderDisplay{
+    border: dashed;
+    padding: 1em;
+    list-style-type: none;
+}
+
