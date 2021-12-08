@@ -8,6 +8,6 @@ const renderAllHTML = () => {
 
 renderAllHTML();
 
-document.addEventListener("dbStateChanged", () => {
+document.addEventListener("stateChanged", () => {
   renderAllHTML();
 });

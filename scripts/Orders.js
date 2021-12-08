@@ -49,7 +49,7 @@ export const Orders = () => {
     
 });
 
-html += listItems.join("********");
+html += listItems.join("");
 html += "</ul>";
   }
 return html;

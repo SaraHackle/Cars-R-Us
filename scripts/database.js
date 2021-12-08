@@ -23,10 +23,8 @@ const database = {
     { id: 3, package: "Visibility Package", price: 1258.9 },
     { id: 4, package: "Ultra Package", price: 795.45 },
   ],
-  orders: [
-    
-  ],
-  
+  orderBuilder: {},
+  customOrders: [],
 };
 
 export const getPaints = () => {
@@ -45,61 +43,29 @@ export const getTechnologies = () => {
   return database.technologies.map((technology) => ({ ...technology }));
 };
 export const getOrders = () => {
-  return database.orders.map((order) => ({ ...order }));
+  return database.customOrders.map((order) => ({ ...order }));
 };
 
-let orderState = {}
-
 export const setWheel = (id) => {
-  database.orderState.wheelId = id
+  database.orderBuilder.wheelId = id;
 };
 
 export const setPaint = (id) => {
-  database.orderState.paintId = id
+  database.orderBuilder.paintId = id;
 };
 
 export const setInterior = (id) => {
-  database.orderState.interiorId = id
+  database.orderBuilder.interiorId = id;
 };
 export const setTechnology = (id) => {
-  database.orderState.technologyId = id
+  database.orderBuilder.technologyId = id;
 };
 
 export const addCustomOrder = () => {
-
-    if (orderState.technologyId && orderState.wheelId && orderState.interiorId && orderState.paintId) { 
-      const newOrder = {
-        technologyId: orderState.technologyId,
-        interiorId: orderState.interiorId,
-        paintId: orderState.paintId,
-        wheelId: orderState.wheelId,
-
-
-        timestamp: Date.now(),
-        id: calcId(database.orders)
-      }
-    
-      database.orders.push(newOrder)
-      // alert anything that's listening to the fact that our db has been updated
-      document.dispatchEvent(new CustomEvent("dbStateChanged"))
-    
-      orderState = {}
-    } else {
-      window.alert("Please select one from each customization list")
-    }
-  
-  }
-  
-  const calcId = (arr) => {
-    const lastIndex = arr.length - 1
-    if (lastIndex === -1) {
-      // return always ends the function
-      const newId = 1
-      return newId
-    }
-    const lastItemId = arr[lastIndex].id
-    const newId = lastItemId + 1
-    return newId
-  }
-
-  
+  const newOrder = { ...database.orderBuilder };
+  newOrder.id = database.customOrders.length + 1;
+  newOrder.timestamp = Date.now();
+  database.customOrders.push(newOrder);
+  database.orderBuilder = {};
+  document.dispatchEvent(new CustomEvent("stateChanged"));
+};
