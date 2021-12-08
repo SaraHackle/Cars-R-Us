@@ -24,16 +24,7 @@ const database = {
     { id: 4, package: "Ultra Package", price: 795.45 },
   ],
   orderBuilder: {},
-  customOrders: [
-    {
-      id: 1,
-      wheelId: 3,
-      interiorId: 2,
-      technologyId: 3,
-      paintId: 1,
-      timestamp: 1614659931693,
-    },
-  ],
+  customOrders: [],
 };
 
 export const getPaints = () => {
@@ -72,8 +63,7 @@ export const setTechnology = (id) => {
 
 export const addCustomOrder = () => {
   const newOrder = { ...database.orderBuilder };
-  const lastIndex = database.customOrders.length - 1;
-  newOrder.id = database.customOrders[lastIndex].id + 1;
+  newOrder.id = database.customOrders.length + 1;
   newOrder.timestamp = Date.now();
   database.customOrders.push(newOrder);
   database.orderBuilder = {};
